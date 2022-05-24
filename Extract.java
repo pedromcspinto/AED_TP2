@@ -58,28 +58,3 @@ public class Extract {
         return intNumColumns;
     }
 }
-
-
-
-//public class Extract {
-//    private String linha;
-//    Extract(){
-//        linha="30217,151,11/02/2021,NY-2,afternoon,\"sku21,sku25,sku75\",none";
-//    }
-//    public String getString(){
-//        return linha;
-//    }
-//
-//    public String extractAspas(linha){
-//        char[] charArray = linha.toCharArray();
-//        int flag = -1;
-//        for (int i = 0; i<charArray.length; i++) {
-//            if(charArray[i] == '"')
-//                flag*=-1;
-//
-//            if(flag==1 && charArray[i] == ',')
-//                charArray[i]=' ';
-//        }
-//        return new String(charArray).replace("\"", "");
-//    }
-//}
