@@ -49,12 +49,4 @@ public class Extract {
         }
         return new String(charArray).replace("\"", "");
     }
-
-    public int getIntNumLines() {
-        return intNumLines;
-    }
-
-    public int getIntNumColumns() {
-        return intNumColumns;
-    }
 }
