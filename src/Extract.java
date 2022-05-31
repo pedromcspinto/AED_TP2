@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.Hashtable;
 
-public class Extract {
+public class Extract{
     private final String[][] strMatrixData;
     private int intNumColumns, intNumLines;
 
