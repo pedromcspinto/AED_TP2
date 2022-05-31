@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Extract extract = new Extract("./input");
+        Extract extract = new Extract("./Input");
         Transform transform = new Transform(extract.getStrMatrixData());
         ArrayList<HashMap<String,String>> temp = transform.getDataStorage().getTable();
         for(HashMap<String, String> hashtable : temp){
