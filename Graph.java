@@ -11,7 +11,7 @@ public class Graph {
     public Node getNode(Node wantedNode){
         Node tmp=null;
         for(Node node : nodes)
-            if(node.compareTo(wantedNode)>0)
+            if(node.equals(wantedNode))
                 tmp = node;
         return tmp;
     }
@@ -22,14 +22,14 @@ public class Graph {
 
     private void buildGraph(Table data){
 
-        for(Hashtable<String,String> hashtable : data.getTable()){
+        for(HashMap<String,String> hashtable : data.getTable()){
             ArrayList<Node> nodeArraylist = new ArrayList<>();
             int index = 0;
             for(String key: hashtable.keySet()){
                 Hashtable<String,String> tmp = new Hashtable<>();
                 tmp.put(key, hashtable.get(key));
                 Node node = new Node(tmp);
-                if(this.getNode(node)!=null){
+                if(!nodes.add(node)){
                     node = this.getNode(node);
                 }
                 nodes.add(node);
@@ -37,14 +37,9 @@ public class Graph {
             }
 
             for(int i=0; i<nodeArraylist.size(); i++){
-                if(nodeArraylist.get(i).getType().equals("order_id"))
-                    index=i;
-            }
-
-            for(int i=0; i<nodeArraylist.size(); i++){
-                if(i!=index){
-                    nodeArraylist.get(index).addConnection(nodeArraylist.get(i));
-                    nodeArraylist.get(i).addConnection(nodeArraylist.get(index));
+                if(i!=0){
+                    nodeArraylist.get(0).addConnection(nodeArraylist.get(i));
+                    nodeArraylist.get(i).addConnection(nodeArraylist.get(0));
                 }
             }
         }

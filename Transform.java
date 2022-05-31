@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Transform {
-    private ArrayList<Hashtable<String,String>> dataStorage;
+    private ArrayList<HashMap<String,String>> dataStorage;
     private int intNumLines;
     private int intNumCols;
 
@@ -14,7 +14,7 @@ public class Transform {
 
     private void transformData(String[][] strMatrixData) {
         for(int i = 1; i<strMatrixData.length; i++){
-            Hashtable<String,String> map = new Hashtable<>();
+            HashMap<String,String> map = new LinkedHashMap<>();
             for(int j = 0; j<strMatrixData[0].length; j++){
                 map.put(strMatrixData[0][j], strMatrixData[i][j]);
             }

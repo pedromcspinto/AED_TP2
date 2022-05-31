@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 
 public class Table {
-    private ArrayList<Hashtable<String,String>> table;
+    private ArrayList<HashMap<String,String>> table;
     private int intNumLines;
     private int intNumCols;
 //    private TableFormatter tableFormatter;
@@ -17,7 +17,7 @@ public class Table {
 //    }
 
 
-    public Table(ArrayList<Hashtable<String,String>> data, int intNumLines, int intNumCols){
+    public Table(ArrayList<HashMap<String,String>> data, int intNumLines, int intNumCols){
         this.table = data;
         this.intNumLines = intNumLines;
         this.intNumCols = intNumCols;
@@ -34,5 +34,5 @@ public class Table {
 //    public void printTable() throws NoLinesTableException {this.tableFormatter.printTable();}
 
 
-    public ArrayList<Hashtable<String, String>> getTable() {return table;}
+    public ArrayList<HashMap<String, String>> getTable() {return table;}
 }

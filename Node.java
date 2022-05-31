@@ -1,9 +1,6 @@
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-public class Node implements Comparable<Node>{
+public class Node{
     private Hashtable<String,String> identifier;
     private ArrayList<Node> connections;
 
@@ -16,9 +13,13 @@ public class Node implements Comparable<Node>{
         connections.add(node);
     }
 
-    public String getType(){
-        return identifier.keySet().iterator().next();
-    }
+//    public String getContent(){
+//        return identifier.get(identifier.keySet().iterator().next());
+//    }
+//
+//    public String getType(){
+//        return identifier.keySet().iterator().next();
+//    }
 
     public Hashtable<String,String> getIdentifier(){
         return identifier;
@@ -29,10 +30,15 @@ public class Node implements Comparable<Node>{
     }
 
     @Override
-    public int compareTo(Node other) {
-        int flag=-1;
-        if(this.identifier.equals(other.identifier))
-            flag*=-1;
-        return flag;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Node)) return false;
+        Node node = (Node) o;
+        return getIdentifier().equals(node.getIdentifier());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdentifier());
     }
 }
