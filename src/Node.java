@@ -13,13 +13,22 @@ public class Node{
         connections.add(node);
     }
 
-//    public String getContent(){
-//        return identifier.get(identifier.keySet().iterator().next());
-//    }
-//
-//    public String getType(){
-//        return identifier.keySet().iterator().next();
-//    }
+    public String getContent(){
+        return identifier.get(identifier.keySet().iterator().next());
+    }
+
+    public ArrayList<Node> getContentBy(String key){
+        ArrayList<Node> tmp = new ArrayList<>();
+        for(Node node : this.connections){
+            if(node.getType().equals(key))
+                tmp.add(node);
+        }
+        return tmp;
+    }
+
+    public String getType(){
+        return identifier.keySet().iterator().next();
+    }
 
     public Hashtable<String,String> getIdentifier(){
         return identifier;

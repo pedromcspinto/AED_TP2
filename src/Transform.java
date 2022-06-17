@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Transform {
+    private final Graph graph;
     private ArrayList<HashMap<String,String>> dataStorage;
     private int intNumLines;
     private int intNumCols;
@@ -10,6 +11,7 @@ public class Transform {
         transformData(strMatrixData);
         this.intNumLines = strMatrixData.length-1;
         this.intNumCols = strMatrixData[0].length;
+        this.graph = new Graph(this.getDataStorage());
     }
 
     private void transformData(String[][] strMatrixData) {
@@ -23,4 +25,8 @@ public class Transform {
     }
 
     public Table getDataStorage() {return new Table(this.dataStorage,this.intNumLines,this.intNumCols);}
+
+    public Graph getGraph(){
+        return this.graph;
+    }
 }
