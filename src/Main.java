@@ -40,13 +40,7 @@ public class Main {
                 System.out.println("Recomendação Simples");
                 System.out.println("Dado os Produtos:");
                 products = scanner.nextLine();
-                ArrayList<String> resultado = load.simpleRecommendation(products);
-                String[] SplittedProducts = products.split(",");
-                for (String s: resultado){
-                    for(String k : SplittedProducts)
-                        if(s.equals(k))
-                            resultado.remove(s);
-                }
+                Set<String> resultado = load.simpleRecommendation(products);
                 for(String s : resultado){
                     System.out.println(s);
                 }
@@ -63,7 +57,7 @@ public class Main {
                 System.out.println("Query com Contagem");
                 System.out.println("Dada a Query:");
                 filters = scanner.nextLine();
-                load.queryRecommendation(filters);
+                System.out.println(load.queryRecommendation(filters));
                 break;
             default:
         }
