@@ -2,15 +2,15 @@ import java.util.*;
 
 public class Node{
     private Hashtable<String,String> identifier;
-    private ArrayList<Node> connections;
+    private ArrayList<Node> arConnectionNodes;
 
     public Node(Hashtable<String,String> identifier){
         this.identifier = identifier;
-        connections = new ArrayList<>();
+        arConnectionNodes = new ArrayList<>();
     }
 
     public void addConnection(Node node){
-        connections.add(node);
+        arConnectionNodes.add(node);
     }
 
     public String getContent(){
@@ -18,12 +18,12 @@ public class Node{
     }
 
     public ArrayList<Node> getContentBy(String key){
-        ArrayList<Node> tmp = new ArrayList<>();
-        for(Node node : this.connections){
+        ArrayList<Node> arNodeTemp = new ArrayList<>();
+        for(Node node : this.arConnectionNodes){
             if(node.getType().equals(key))
-                tmp.add(node);
+                arNodeTemp.add(node);
         }
-        return tmp;
+        return arNodeTemp;
     }
 
     public String getType(){
@@ -35,14 +35,14 @@ public class Node{
     }
 
     public ArrayList<Node> getConnections(){
-        return connections;
+        return arConnectionNodes;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Node)) return false;
-        Node node = (Node) o;
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof Node)) return false;
+        Node node = (Node) object;
         return getIdentifier().equals(node.getIdentifier());
     }
 

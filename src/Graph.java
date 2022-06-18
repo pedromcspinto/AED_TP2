@@ -2,30 +2,26 @@
 import java.util.*;
 
 public class Graph {
-    private Set<Node> nodes;
+    private Set<Node> setNodes;
 
     public Graph(Table data){
-        this.nodes = new HashSet<>();
+        this.setNodes = new HashSet<>();
         this.buildGraph(data);
     }
 
     private Node getNode(Node wantedNode){
-        Node tmp=null;
-        for(Node node : nodes)
+        Node nodeTemp=null;
+        for(Node node : setNodes)
             if(node.equals(wantedNode))
-                tmp = node;
-        return tmp;
+                nodeTemp = node;
+        return nodeTemp;
     }
     public Node getNodebyString(String wantedNode){
-        Node tmp=null;
-        for(Node node : nodes)
+        Node nodeTemp=null;
+        for(Node node : setNodes)
             if(node.getContent().equals(wantedNode))
-                tmp = node;
-        return tmp;
-    }
-
-    public Set<Node> getSet(){
-        return nodes;
+                nodeTemp = node;
+        return nodeTemp;
     }
 
     private void buildGraph(Table data){
@@ -60,10 +56,10 @@ public class Graph {
     }
 
     private void metodo(String key, String value, ArrayList<Node> nodeArrayList){
-        Hashtable<String,String> tmp = new Hashtable<>();
-        tmp.put(key, value);
-        Node node = new Node(tmp);
-        if(!nodes.add(node)){
+        Hashtable<String,String> hashTableTemp = new Hashtable<>();
+        hashTableTemp.put(key, value);
+        Node node = new Node(hashTableTemp);
+        if(!setNodes.add(node)){
             node = this.getNode(node);
         }
         nodeArrayList.add(node);
