@@ -2,10 +2,21 @@ import java.util.*;
 
 public class Load {
     private Graph graph;
+
+    /**
+     * Construtor da classe Load.
+     */
     public Load(Graph graph){
         this.graph = graph;
     }
 
+    /**
+     * Método para fazer uma recomendação simples de produtos.
+     * Recebe os produtos e retorna os produtos que customam ser comprados em conjunto dos produtos recebidos.
+     *
+     * @param products String de produtos juntos por vírgulas Eg.("sku24,sku21").
+     * @return Set de String coms os produtos que customam ser comprados em conjunto dos produtos recebidos.
+     */
     public Set<String> simpleRecommendation(String products){
         Set<String> setTemp = new HashSet<>();
         String[] arStrProducts = products.split(",");
@@ -29,6 +40,15 @@ public class Load {
         return setResultado;
     }
 
+    /**
+     * Método para fazer uma recomendação de produtos através de um filtro.
+     * Recebe os produtos e um filtro.
+     * Retorna os produtos que customam ser comprados em conjunto dos produtos recebidos que se aplicam no filtro.
+     *
+     * @param products String de produtos juntos por vírgulas Eg.("sku24,sku21").
+     * @param filter String com o filtro de recomendação.
+     * @return Set de String coms os produtos que customam ser comprados em conjunto dos produtos recebidos que se aplicam no filtro.
+     */
     public Set<String> filterRecommendation(String products, String filter){
         ArrayList<String> listOfProducts = new ArrayList<>(Arrays.asList(products.split(",")));
         Node filterNode = this.graph.getNodebyString(filter);
@@ -52,6 +72,13 @@ public class Load {
         return  setResultado;
     }
 
+    /**
+     * Método para fazer a contagem de faturas com os filtros em comum.
+     * Recebe os filtros e retorna a contagem de Faturas com filtros em comum.
+     *
+     * @param filters String de filtros juntos por vírgulas Eg.("NY-2,afternoon").
+     * @return int Contagem de Faturas com filtros em comum.
+     */
     public int queryRecommendation(String filters){
         String[] arStrFilters = filters.split(",");
         ArrayList<Node> arNodeFaturas = new ArrayList<>();

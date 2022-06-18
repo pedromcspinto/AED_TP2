@@ -27,8 +27,9 @@ public class Main {
                 System.out.println("Recomendação Simples");
                 System.out.println("Dado os Produtos:");
                 setResultado = objLoad.simpleRecommendation(scanner.nextLine());
-                for(String s : setResultado){
-                    System.out.println(s);
+                System.out.println("Resultado:");
+                for(String string : setResultado){
+                    System.out.println("- " + string);
                 }
                 break;
             case 2:
@@ -38,14 +39,17 @@ public class Main {
                 System.out.println("Dado o Filtro:");
                 String filters = scanner.nextLine();
                 setResultado = objLoad.filterRecommendation(products, filters);
+                System.out.println("Resultado:");
                 for(String string : setResultado){
-                    System.out.println(string);
+                    System.out.println("- " + string);
                 }
                 break;
             case 3:
                 System.out.println("Query com Contagem");
                 System.out.println("Dada a Query:");
-                System.out.println(objLoad.queryRecommendation(scanner.nextLine()));
+                String input = scanner.nextLine();
+                System.out.println("Resultado:");
+                System.out.println("- " + objLoad.queryRecommendation(input));
                 break;
             default:
         }

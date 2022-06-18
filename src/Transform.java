@@ -6,6 +6,12 @@ public class Transform {
     private int intNumLines;
     private int intNumCols;
 
+    /**
+     * Construtor da classe Transform.
+     * Recebe a uma matriz de strings e num Grafo.
+     *
+     * @param strMatrixData matriz de strings com conteúdo da tabela.
+     */
     Transform(String[][]strMatrixData){
         this.dataStorage = new ArrayList<>();
         transformData(strMatrixData);
@@ -14,6 +20,12 @@ public class Transform {
         this.graph = new Graph(this.getDataStorage());
     }
 
+    /**
+     * Método que converte uma matriz de String's para uma ArrayList de HashMap's.
+     * Percorre a matriz e adiciona os elementos na ArrayList de HashMap's.
+     *
+     * @param strMatrixData matriz de strings com conteúdo da tabela.
+     */
     private void transformData(String[][] strMatrixData) {
         for(int i = 1; i<strMatrixData.length; i++){
             HashMap<String,String> map = new LinkedHashMap<>();
@@ -24,8 +36,18 @@ public class Transform {
         }
     }
 
+    /**
+     * Método que retorna uma Tabela.
+     *
+     * @return objeto tabela com o conteúdo da matriz.
+     */
     public Table getDataStorage() {return new Table(this.dataStorage,this.intNumLines,this.intNumCols);}
 
+    /**
+     * Método que retorna o Grafo.
+     *
+     * @return Graph grafo criado através dos dados.
+     */
     public Graph getGraph(){
         return this.graph;
     }
