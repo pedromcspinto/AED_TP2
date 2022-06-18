@@ -15,6 +15,7 @@ class NodeTest {
         identifier = new Hashtable<>();
         identifier.put("items", "sku20");
         node = new Node(identifier);
+        node.addConnection(connection);
     }
 
     @org.junit.jupiter.api.Test
@@ -30,6 +31,7 @@ class NodeTest {
 
     @org.junit.jupiter.api.Test
     void getContentBy() {
+        assertEquals(1, node.getContentBy(connection.getType()).size());
     }
 
     @org.junit.jupiter.api.Test
