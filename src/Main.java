@@ -35,12 +35,13 @@ public class Main {
         int input = scanner.nextInt(); scanner.nextLine();
         String products;
         String filters;
+        Set<String> resultado = new HashSet<>();
         switch (input){
             case 1:
                 System.out.println("Recomendação Simples");
                 System.out.println("Dado os Produtos:");
                 products = scanner.nextLine();
-                Set<String> resultado = load.simpleRecommendation(products);
+                resultado = load.simpleRecommendation(products);
                 for(String s : resultado){
                     System.out.println(s);
                 }
@@ -51,7 +52,10 @@ public class Main {
                 products = scanner.nextLine();
                 System.out.println("Dado o Filtro:");
                 filters = scanner.nextLine();
-                load.filterRecommendation(products, filters);
+                resultado = load.filterRecommendation(products, filters);
+                for(String s : resultado){
+                    System.out.println(s);
+                }
                 break;
             case 3:
                 System.out.println("Query com Contagem");

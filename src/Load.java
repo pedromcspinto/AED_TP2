@@ -7,55 +7,63 @@ public class Load {
     }
 
     public Set<String> simpleRecommendation(String products){
-        Set<String> set = new HashSet<>();
-        String[] separatedProduct = products.split(",");
+        Set<String> setTemp = new HashSet<>();
+        String[] arStrProducts = products.split(",");
         ArrayList<String> listOfProducts = new ArrayList<>();
-        ArrayList<Node> faturas = new ArrayList<>();
-        ArrayList<Node> nodes = new ArrayList<>();
-        Set<String> resultado = new HashSet<>();
-        for(String s : separatedProduct){
-            listOfProducts.add(s);
-            faturas.addAll(this.graph.getNodebyString(s).getConnections());
+        ArrayList<Node> arNodeFaturas = new ArrayList<>();
+        ArrayList<Node> arNodeItems = new ArrayList<>();
+        Set<String> setResultado = new HashSet<>();
+        for(String strProduct : arStrProducts){
+            listOfProducts.add(strProduct);
+            arNodeFaturas.addAll(this.graph.getNodebyString(strProduct).getConnections());
         }
-        for (Node fatura: faturas){
-            nodes.addAll(fatura.getContentBy("items"));
+        for (Node nodeFatura: arNodeFaturas){
+            arNodeItems.addAll(nodeFatura.getContentBy("items"));
         }
-        for(Node node : nodes){
-            if(!set.add(node.getContent())){
-                resultado.add(node.getContent());
+        for(Node nodeItem : arNodeItems){
+            if(!setTemp.add(nodeItem.getContent())){
+                setResultado.add(nodeItem.getContent());
             }
         }
-        resultado.removeAll(listOfProducts);
-        return resultado;
+        listOfProducts.forEach(setResultado::remove);
+        return setResultado;
     }
 
-    public void filterRecommendation(String products, String filters){
-        String[] separatedProduct = products.split(",");
-        Node node = this.graph.getNodebyString(filters);
-        ArrayList<Node> faturas = new ArrayList<>();
-        Set<Node> faturasComProdutos = new HashSet<>();
-        faturas.addAll(node.getConnections());
-//        for(Node fatura : faturas){
-//            ArrayList<Node> items = new ArrayList<>();
-//            boolean found = false;
-//            for(Node item : fatura.getContentBy("items")){
-//                if()
-//            }
-//        }
+    public Set<String> filterRecommendation(String products, String filter){
+        ArrayList<String> listOfProducts = new ArrayList<>(Arrays.asList(products.split(",")));
+        Node filterNode = this.graph.getNodebyString(filter);
+        ArrayList<Node> arNodeFaturas = new ArrayList<>(filterNode.getConnections());
+        ArrayList<Node> arNodeItems = new ArrayList<>();
+        HashSet<String> setResultado = new HashSet<>();
+
+        for(Node nodeFatura : arNodeFaturas){
+            for(Node nodeItem : nodeFatura.getContentBy("items")){
+                for (String strProduct : listOfProducts) {
+                    if(nodeItem.getContent().equals(strProduct)){
+                        arNodeItems.addAll(nodeFatura.getContentBy("items"));
+                    }
+                }
+            }
+        }
+        for (Node nodeItem: arNodeItems) {
+            setResultado.add(nodeItem.getContent());
+        }
+        listOfProducts.forEach(setResultado::remove);
+        return  setResultado;
     }
 
     public int queryRecommendation(String filters){
-        String[] separatedFilters = filters.split(",");
-        ArrayList<Node> faturas = new ArrayList<>();
-        Set<Node> faturasComuns = new HashSet<>();
-        Set<Node> Resultado = new HashSet<>();
-        for(String s : separatedFilters){
-            faturas.addAll(this.graph.getNodebyString(s).getConnections());
+        String[] arStrFilters = filters.split(",");
+        ArrayList<Node> arNodeFaturas = new ArrayList<>();
+        Set<Node> setFaturasComuns = new HashSet<>();
+        Set<Node> setResultado = new HashSet<>();
+        for(String strFilter : arStrFilters){
+            arNodeFaturas.addAll(this.graph.getNodebyString(strFilter).getConnections());
         }
-        for (Node node : faturas){
-            if(!faturasComuns.add(node))
-                Resultado.add(node);
+        for (Node nodeFatura : arNodeFaturas){
+            if(!setFaturasComuns.add(nodeFatura))
+                setResultado.add(nodeFatura);
         }
-        return Resultado.size();
+        return setResultado.size();
     }
 }
